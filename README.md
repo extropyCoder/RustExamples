@@ -1,2 +1,2 @@
 # RustExamples
-Practising Rust
+Practising Rust, examples from the documentation, plus Project Euler questions.
