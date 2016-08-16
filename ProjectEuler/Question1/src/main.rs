@@ -16,6 +16,8 @@ println!("Sum is {}",sum);
 
 }
 
+// Don't know how to do recursion yet
+
 // fn testAndAdd(current : i32){
 //     if current<=1000 {
 //         if current % 5 == 0 || current % 5 ==0 {
