@@ -9,46 +9,48 @@ use std::fs::File;
 
 fn main() {
     println!("Starting Euler 7 !");
-    let mut largest = 0;
-    let nums_array = read_file();
+    let mut largest : u64 = 0;
 
-//    let mut iter = vec_nums.iter().enumerate();
-//.fold(0, |sum, x| sum + x);
-
-//        println!("Number is  {}", &vec_nums[ii]);
-//        if i+12 > &vec_nums.length(){
-//            break;
-//        }
+let array: [u64; 1000] = read_file();
 
 
-// for chunk in vec_nums.chunks(13) {
-//     println!("{:?}", chunk);
+for x in 0..987 {
+    let slico = &array[x .. x+13];
+    let sum_value = product_sequence(slico);
+    if sum_value > largest {
+        largest = sum_value;
+    }
+
+}
+
+// let testio : [u64;5] = [1,2,3,4,5];
+// largest  = product_sequence(&testio);
+ println!("Largest product is {} " ,largest);
+
+}
+
+// fn sum_sequence(xs:&[u64])-> u64{
+//     return xs.iter().fold(0, |sum, x| sum + x);
 // }
 
-let array: [u32; 1000] = read_file();
-
-
-for x in array.iter() {
-
-    print!("{} ", x);
+fn product_sequence(xs:&[u64])-> u64{
+    // for xx in xs{
+    //     println!("{} " ,xx);
+    // }
+    let total_product = xs.iter().fold(1, |product, x| product * x);
+    //println!("Total product is {} " ,total_product);
+    return total_product;
 }
 
-println!("Largest product is {} " ,largest);
-
-}
-
-
-
-
-fn read_file()->[u32;1000]{
+fn read_file()->[u64;1000]{
 
     let f = BufReader::new(File::open("./src/input.txt").expect("open failed"));
 
-    let mut xs: [u32; 1000] = [0; 1000];
+    let mut xs: [u64; 1000] = [0; 1000];
     let mut position = 0;
     for line in f.lines() {
      for c in line.expect("lines failed").chars() {
-             xs[position] = c.to_digit(10).expect("Invalid Character ! ");
+             xs[position] = c.to_digit(10).expect("Invalid Character ! ") as u64;
              position +=1;
 
          }
@@ -56,19 +58,3 @@ fn read_file()->[u32;1000]{
 
      return xs;
 }
-
-
-
-// fn read_file()-> Vec<u32>{
-//
-//     let f = BufReader::new(File::open("./src/input.txt").expect("open failed"));
-//     let mut v: Vec<u32> = vec![];
-//     for line in f.lines() {
-//          for c in line.expect("lines failed").chars() {
-//              v.push(c.to_digit(10).expect("Invalid Character ! "));
-//              //println!("Character: {}", c);
-//          }
-//      }
-//
-//      return v;
-// }
