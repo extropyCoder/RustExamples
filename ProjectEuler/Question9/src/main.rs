@@ -11,11 +11,29 @@
 
 fn main() {
     println!("Starting Euler 9 !");
-
-
+let mut stop_loop = false;
+// brute force because I've forgotten the correct way to do this
 for a in 1..999 {
+    if stop_loop == true{
+        break;
+    }
 for b in 1..999 {
+    if stop_loop == true{
+        break;
+    }
+    if a + b > 1000{
+        break;
+    }
 for c in 1..999 {
+    if a + b + c == 1000{
+        if a*a +b*b == c*c{
+        let product = a*b*c;
+        println!("Foound ! {}, {}, {}" ,a,b,c);
+        println!("Product is {}" ,product);
+        stop_loop=true;
+    }
+    }
+
 
 }
 }
