@@ -30,13 +30,100 @@
 fn main() {
     println!("Starting Euler 11 !");
 
-    let mut greatest_product = 0;
+
 
     let  big_array = build_array();
-
-
+    let  greatest_product = get_max(&big_array);
     println!("Greatest Product is {}",greatest_product);
 
+}
+
+fn get_max(big_array : &[[u32;20];20])-> u32{
+let mut max = 0;
+    for row in 0..20{
+    for col in 0..20{
+        // check lefts
+        if col > 2{
+            let left_slice : [u32 ;4] = [big_array[row][col-3],big_array[row][col-2],big_array[row][col-1],big_array[row][col]];
+            let temp = product_slice(&left_slice);
+            if temp > max{
+                max = temp;
+            }
+
+        }
+        if col < 17{
+            let right_slice : [u32 ;4] = [big_array[row][col+3],big_array[row][col+2],big_array[row][col+1],big_array[row][col]];
+            let temp = product_slice(&right_slice);
+            if temp > max{
+                max = temp;
+            }
+
+        }
+        if row > 2{
+            let up_slice : [u32 ;4] = [big_array[row -3][col],big_array[row-2][col],big_array[row -1][col],big_array[row][col]];
+            let temp = product_slice(&up_slice);
+            if temp > max{
+                max = temp;
+            }
+
+
+        }
+        if row < 17{
+            let down_slice : [u32 ;4] = [big_array[row +3][col],big_array[row+2][col],big_array[row +1][col],big_array[row][col]];
+            let temp = product_slice(&down_slice);
+            if temp > max{
+                max = temp;
+            }
+
+        }
+
+        if col > 2 && row > 2{
+            let left_up_diag_slice : [u32 ;4] = [big_array[row-3][col-3],big_array[row-2][col-2],big_array[row-1][col-1],big_array[row][col]];
+            let temp = product_slice(&left_up_diag_slice);
+            if temp > max{
+                max = temp;
+            }
+
+        }
+
+        if col < 17 && row > 2{
+            let right_up_diag_slice : [u32 ;4] = [big_array[row-3][col+3],big_array[row-2][col+2],big_array[row-1][col+1],big_array[row][col]];
+            let temp = product_slice(&right_up_diag_slice);
+            if temp > max{
+                max = temp;
+            }
+
+        }
+
+        if col > 2 && row < 17{
+            let left_down_diag_slice : [u32 ;4] = [big_array[row+3][col-3],big_array[row+2][col-2],big_array[row+1][col-1],big_array[row][col]];
+            let temp = product_slice(&left_down_diag_slice);
+            if temp > max{
+                max = temp;
+            }
+
+        }
+        if col < 17 && row < 17{
+            let right_down_diag_slice : [u32 ;4] = [big_array[row+3][col+3],big_array[row+2][col+2],big_array[row+1][col+1],big_array[row][col]];            //println!("col is {}",col);
+            let temp = product_slice(&right_down_diag_slice);
+            if temp > max{
+                max = temp;
+            }
+
+        }
+
+
+
+    }
+}
+return max;
+}
+
+fn product_slice(xs:&[u32])-> u32{
+
+    let total_product = xs.iter().fold(1, |product, x| product * x);
+
+    return total_product;
 }
 
 
