@@ -23,22 +23,14 @@ for x in 0..987 {
 
 }
 
-// let testio : [u64;5] = [1,2,3,4,5];
-// largest  = product_sequence(&testio);
  println!("Largest product is {} " ,largest);
 
 }
 
-// fn sum_sequence(xs:&[u64])-> u64{
-//     return xs.iter().fold(0, |sum, x| sum + x);
-// }
+
 
 fn product_sequence(xs:&[u64])-> u64{
-    // for xx in xs{
-    //     println!("{} " ,xx);
-    // }
     let total_product = xs.iter().fold(1, |product, x| product * x);
-    //println!("Total product is {} " ,total_product);
     return total_product;
 }
 
