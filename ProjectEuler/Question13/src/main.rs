@@ -16,9 +16,9 @@ let new_array = reduce_array(&big_array);
         println!("zz is {?:}",zz);
     }
 
-    // for x in new_array.iter(){
-    //     println!("x is {:?}",x);
-    // }
+    for x in new_array.iter(){
+        println!("x is {:?}",x);
+    }
 
 
 
