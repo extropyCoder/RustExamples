@@ -5,59 +5,42 @@
 use std::io::{BufRead, BufReader};
 use std::fs::File;
 
+extern crate num;
+use num::{BigInt, Zero};
+
+
 fn main() {
     println!("Starting Euler 13 !");
     let mut answer : u32 = 0;
-    let big_array = read_file();
+    let big_array = big_read();
 
-let new_array = reduce_array(&big_array);
 
+    let mut answer : BigInt = Zero::zero();
     for zz in big_array.iter(){
-        println!("zz is {?:}",zz);
+        answer = answer + zz;
+
     }
-
-    for x in new_array.iter(){
-        println!("x is {:?}",x);
-    }
-
-
+    println!("answer is {}",answer);
 
     }
 
-    fn read_file()-> [[u32; 50];100] {
 
-        let f = BufReader::new(File::open("./src/number.txt").expect("open failed"));
-        let mut xs: [[u32; 50];100] =[[0;50];100];
-        //let mut xs: [u64; 1000] = [0; 1000];
-        let mut position = 0;
-        let mut line_number = 0;
-        for line in f.lines() {
-         for c in line.expect("lines failed").chars() {
-                //println!("reading line {}",line_number);
-                //println!("reading position {}",position);
-                 xs[position][line_number] = c.to_digit(10).expect("Invalid Character ! ") as u32;
-                 position +=1;
-             }
-             line_number+=1;
-             position = 0;
-             if line_number >=50{
-                 break;
-             }
-         }
 
-         return xs;
-    }
+fn big_read() -> Vec<BigInt>  {
 
-    fn reduce_array(input : &[[u32; 50];100]) -> [[u32; 12];100] {
-        let mut output: [[u32; 12];100] =[[0;12];100];
-        let mut num = 0;
-        for x in input.iter() {
-            //println!("num is {}",num);
-            for y in 0 .. 11 {
-                output[num][y] = x[y];
-            }
-            num+=1;
-        }
-        return output;
+    let fileReader = BufReader::new(File::open("./src/number.txt").expect("open failed"));
+      let mut vector: Vec<BigInt> = vec![];
 
-    }
+       for line in fileReader.lines() {
+           match line {
+               Err(why)   => panic!("{:?}", why),
+               Ok(string) => match string.trim().parse::<BigInt>(){
+                   //ParseBigIntError => panic!("Not a number!"),
+                   Err(why)   => panic!("{:?}", why),
+                   Ok(x)=> vector.push(x)
+               }
+           }
+       }
+return vector;
+
+}
