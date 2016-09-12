@@ -12,21 +12,44 @@
 //Which starting number, under one million, produces the longest chain?
 //NOTE: Once the chain starts the terms are allowed to go above one million.
 
-extern crate num;
-use num::{BigInt, Zero};
 
 
 fn main() {
     println!("Starting Euler 14 !");
-    let mut answer : u32 = 0;
+    let mut answer : ( u32,u32) = (0,0);
+    for n in 1 .. 1000000 {
+        let latest = calc_collatz_length(n);
+        if latest > answer.1 {
+            answer.0 = n;
+            answer.1 = latest;
+        }
+    }
 
-    println!("answer is {}",answer);
+    println!("n is {}, length {}",answer.0,answer.1);
 
     }
 
-fn calc_collatz_length(n:u32) -> u64{
-    let mut length :u64 = 0;
-
-
+fn calc_collatz_length(n:u32) -> u32{
+    let (n,length) = get_next_collatz((n as u64,1));
     return length;
+}
+
+fn get_next_collatz(input : (u64,u32)) -> (u64,u32){
+    //n → n/2 (n is even)
+    //n → 3n + 1 (n is odd)
+    if input.0 ==1{
+        return input;
+    }
+    else if input.0 % 2 == 0 {
+            let new_n = input.0 /2;
+            let new_length = input.1 + 1;
+            return get_next_collatz((new_n,new_length));
+    }
+    else {
+        let new_n = 1 + input.0 * 3;
+        let new_length = input.1 + 1;
+        return get_next_collatz((new_n,new_length));
+
+    }
+
 }
