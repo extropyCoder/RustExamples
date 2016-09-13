@@ -4,13 +4,13 @@
 //there are exactly 6 routes to the bottom right corner.
 
 //How many such routes are there through a 20×20 grid?
-
+// 40!/(20!20!)
 
 
 fn main() {
     println!("Starting Euler 15 !");
 
-    let answer = 0;
+    let answer = 137846528820;
     println!("answer is {}" ,answer);
 
     }
