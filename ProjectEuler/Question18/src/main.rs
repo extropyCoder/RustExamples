@@ -42,7 +42,7 @@ use std::cmp::max;
          let mut vector = data.split("\n").map(|x| x.split(" ").map(|s: &str| s.parse::<u32>().unwrap())
              .collect::<Vec<u32>>()).collect::<Vec<Vec<u32>>>();
 
-         let max_value = max_path(&mut vector);
+         let max_value = find_path(&mut vector);
 
          println!("{}", max_value);
 
@@ -50,7 +50,7 @@ use std::cmp::max;
 
         }
 
-        fn max_path(vector: &mut Vec<Vec<u32>>) -> u32 {
+        fn find_path(vector: &mut Vec<Vec<u32>>) -> u32 {
 
             while vector.len() > 1 {
 
