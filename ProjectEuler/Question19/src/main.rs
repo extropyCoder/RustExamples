@@ -20,13 +20,21 @@
 
     fn main() {
         println!("Starting Euler 19!");
+        println!("d={}",day_of_week(26,03,1972));
 
-        println!("answer {} ",day_of_week(24,9,2016));
-
-
+        let mut total = 0;
+        for yy in 1901 .. 2000 {
+            for mm in 1 ..13{
+                if day_of_week(1,mm,yy)==0{
+                    println!("date ={} / {}",mm,yy);
+                        total+=1;
+                    }
+                }
+            }
+        println!("Answer is {}",total);
 }
 
-fn day_of_week(day :i16,month : i16, year : i16) -> i32 {
+fn day_of_week(dd :i16,mm : i16, yy : i16) -> i32 {
 // use Gaussian function
 //   w = (d+floor(2.6*m-0.2)+y+floor(y/4)+floor(c/4)-2*c) mod 7
 
@@ -39,12 +47,12 @@ fn day_of_week(day :i16,month : i16, year : i16) -> i32 {
 //   w = day of week (Sunday = 0, Saturday = 6)
 
 
-let m = (month - 3) % 12 + 1;
+let m = (mm - 3) % 12 + 1;
 
-let mut Y = year;
+let mut Y = yy;
 
 if m > 10 {
-    Y = year - 1;
+    Y = yy - 1;
 }
 
 
@@ -54,7 +62,7 @@ let c :f32 = ((Y - (Y % 100)) / 100) as f32;
 let mf = (2.6* m as f32 -0.2).floor();
 
 
-let w1 :i32 = ((day as f32 + mf + y + (y/4.0) + c/4.0 -2.0*c)) as i32;
+let w1 :i32 = ((dd as f32 + mf + y + (y/4.0) + c/4.0 -2.0*c)) as i32;
 let w2 = w1 % 7;
 return w2;
 
