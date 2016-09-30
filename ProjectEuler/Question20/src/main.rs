@@ -18,27 +18,27 @@ use num::bigint::{ToBigInt};
     fn main() {
         println!("Starting Euler 20!");
 
-        println!("10! = {}", factorial(&(10.to_bigint().unwrap())));
+        println!("10! = {}", factorial(100));
         }
 
-//
-// fn factorial(n: &BigInt) -> BigInt{
-//     let z = One::one();
-//     if *n == z{
-//          return z;
-//     }
-//     else{
-//         return *n * factorial(&(*n -z));
-// }
-//
-// }
 
+fn factorial(n: i64) -> i64{
 
-pub fn factorial<T: Integer>(num: &T) -> T {
-	if *num == Zero::zero() ||
-		*num == One::one() {
-		return One::one();
-	} else {
-		return *num * factorial(&(*num - One::one()));
-	}
+    if n == 1{
+         return 1;
+    }
+    else{
+        return n * factorial(n-1);
 }
+
+}
+
+
+// pub fn factorial<T: Integer>(num: &T) -> T {
+// 	if *num == Zero::zero() ||
+// 		*num == One::one() {
+// 		return One::one();
+// 	} else {
+// 		return *num * factorial(&(*num - One::one()));
+// 	}
+// }
