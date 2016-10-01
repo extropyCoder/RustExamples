@@ -22,23 +22,23 @@ use num::bigint::{ToBigInt};
         }
 
 
-fn factorial(n: i64) -> i64{
-
-    if n == 1{
-         return 1;
-    }
-    else{
-        return n * factorial(n-1);
-}
-
-}
-
-
-// pub fn factorial<T: Integer>(num: &T) -> T {
-// 	if *num == Zero::zero() ||
-// 		*num == One::one() {
-// 		return One::one();
-// 	} else {
-// 		return *num * factorial(&(*num - One::one()));
-// 	}
+// fn factorial(n: i64) -> i64{
+//
+//     if n == 1{
+//          return 1;
+//     }
+//     else{
+//         return n * factorial(n-1);
 // }
+//
+// }
+
+
+pub fn factorial(num: &BigInt) -> BigInt {
+	if *num == Zero::zero() ||
+		*num == One::one() {
+		return One::one();
+	} else {
+		return *num * factorial(&(*num - One::one()));
+	}
+}
