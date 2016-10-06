@@ -16,3 +16,32 @@
 
 
         }
+
+
+fn find_divisors(n:i32)->Vec<i32> {
+
+    let mut new_vector: Vec<i32> = Vec::new();
+    new_vector.push(1);
+
+    let limit:i32 = ((n as f64).sqrt()).ceil() as i32;
+     for x in 2..limit {
+         if n % x == 0 {
+             new_vector.push(x);
+             let other = n / x;
+             new_vector.push(other);
+         }
+     }
+
+
+
+
+    return new_vector;
+}
+
+fn sum_vector(v:Vec<i32>) ->i32{
+        let sum:i32 = 0;
+
+
+
+        return sum;
+}
