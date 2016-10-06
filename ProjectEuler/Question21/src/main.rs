@@ -15,8 +15,15 @@
         println!("Starting Euler 21!");
 
 
+
+        //println!("Vec is {:?}",vec);
         }
 
+
+fn get_sum_divisors(n:i32) -> i32{
+
+    return sum_vector(find_divisors(n));
+}
 
 fn find_divisors(n:i32)->Vec<i32> {
 
@@ -39,9 +46,5 @@ fn find_divisors(n:i32)->Vec<i32> {
 }
 
 fn sum_vector(v:Vec<i32>) ->i32{
-        let sum:i32 = 0;
-
-
-
-        return sum;
+        return v.iter().fold(0, |sum, i| sum + i);
 }
