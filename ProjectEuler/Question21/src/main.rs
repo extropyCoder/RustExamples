@@ -12,20 +12,31 @@
 //Evaluate the sum of all the amicable numbers under 10000.
 
 use std::collections::HashMap;
+use std::collections::hash_map::Entry;
+
 
     fn main() {
         println!("Starting Euler 21!");
-        let mut pairs = HashMap::new();
+        let mut sum = 0;
+        let mut pairs = HashMap::<i32, Vec<i32>>::new();
         for n in 1 .. 10000{
-            let x= get_sum_divisors(n);
-            pairs.insert(n,x);
+            let x:i32= get_sum_divisors(n);
+
+
+            if !pairs.contains_key(&x) {
+                let mut vec =Vec::new();
+                vec.push(n);
+                pairs.insert(x,vec);
+            }
+            else{
+                let mut vec = pairs.get_mut(&x).unwrap();
+                vec.push(n);
+            }
+
         }
 
 
-
-
-
-        //println!("Vec is {:?}",vec);
+        println!("Sum is {}",sum);
         }
 
 
