@@ -12,7 +12,6 @@
 //Evaluate the sum of all the amicable numbers under 10000.
 
 use std::collections::HashMap;
-use std::collections::hash_map::Entry;
 
 
     fn main() {
@@ -32,9 +31,18 @@ use std::collections::hash_map::Entry;
                 let mut vec = pairs.get_mut(&x).unwrap();
                 vec.push(n);
             }
+        }
+        // now we have a map, so go through and add where there are pairs
+        for (x, vec_of_amicables) in &pairs {
+            if vec_of_amicables.len() == 2{
+                println!("x n is {} {:?}", x, vec_of_amicables);
+                for vals in vec_of_amicables.iter(){
+                    println!("adding {} ", vals);
+                    sum = sum + vals;
+                }
+            }
 
         }
-
 
         println!("Sum is {}",sum);
         }
