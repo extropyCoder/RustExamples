@@ -18,6 +18,8 @@ use std::collections::HashMap;
     fn main() {
         println!("Starting Euler 22!");
 }
-fn readFile() -> Vec<str>{
-    return new Vec!();
+
+fn readFile() -> Vec<String>{
+    let mut vec:Vec<String> =Vec::new();
+    return vec;
 }
