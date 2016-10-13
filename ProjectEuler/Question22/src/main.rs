@@ -12,14 +12,33 @@
 //What is the total of all the name scores in the file?
 
 
-use std::collections::HashMap;
+use std::io;
+use std::path::Path;
+use std::fs::File;
+use std::io::{BufRead, BufReader};
 
 
     fn main() {
         println!("Starting Euler 22!");
+
+        let word_vec = big_read();
+        println!("{:?}",word_vec);
 }
 
-fn readFile() -> Vec<String>{
-    let mut vec:Vec<String> =Vec::new();
-    return vec;
+fn big_read() -> Vec<String>  {
+
+    let fileReader = BufReader::new(File::open("./src/names.txt").expect("open failed"));
+      let mut vector: Vec<String> = vec![];
+
+       for line in fileReader.lines() {
+           match line {
+               Err(why)   => panic!("{:?}", why),
+               Ok(string) => match string.trim().parse::<String>(){
+                   Err(why)   => panic!("{:?}", why),
+                   Ok(x)=> vector.push(x)
+               }
+           }
+       }
+return vector;
+
 }
