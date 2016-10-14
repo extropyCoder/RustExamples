@@ -21,7 +21,8 @@ use std::io::{BufRead, BufReader};
     fn main() {
         println!("Starting Euler 22!");
 
-        let word_vec = big_read();
+        let mut word_vec = big_read();
+        word_vec.sort();
         println!("{:?}",word_vec);
 }
 
