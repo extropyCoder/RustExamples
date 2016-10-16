@@ -18,6 +18,8 @@ use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 
+// file has been cleaned a little
+
     fn main() {
         println!("Starting Euler 22!");
 
